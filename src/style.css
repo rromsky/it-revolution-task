@@ -206,3 +206,104 @@ header{
     margin: 0px 333px;
     justify-content: space-around;
 }
+
+/* Notifications */
+
+.notifications{
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 100px;
+}
+
+.menuButton{
+    width: 150px;
+    height: 90px;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 5px solid #C43E18;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 30px;
+    margin: 10px 0px;
+}
+
+.analiticsBlock{
+    width: 1150px;
+    height: 630px;
+    border: 5px solid #C43E18;
+    background-color: rgba(255, 255, 255, 1);
+    margin: 0 auto;
+    border-radius: 12px;
+}
+
+.staticBlock{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.countSeaAnimal{
+    width: 220px;
+    height: 172px;
+    background-color: #D9D9D9;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.countDieadSeaAnimal{
+    width: 220px;
+    height: 172px;
+    background-color: #D9D9D9;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.countGirlSeaAnimal{
+    width: 220px;
+    height: 172px;
+    background-color: #D9D9D9;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.countBoySeaAnimal{
+    width: 220px;
+    height: 172px;
+    background-color: #D9D9D9;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.graphsBlock{
+    display: flex;
+    justify-content: space-around;
+}
+
+.graphs{
+    width: 555px;
+    height: 374px;
+    background-color: #D9D9D9;
+    margin-top: 20px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+.graphs2{
+    width: 555px;
+    height: 374px;
+    background-color: #D9D9D9;
+    margin-top: 20px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+}
