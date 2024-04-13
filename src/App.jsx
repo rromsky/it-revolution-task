@@ -1,9 +1,7 @@
-import { useState } from 'react'
-import Index from "./pages/Home/Index"
-import './App.css'
+import Index from "../src/pages/Home/Index"
+import './style.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
