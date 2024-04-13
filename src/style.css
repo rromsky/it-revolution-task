@@ -89,3 +89,120 @@ header{
     margin: -10px 10px 10px ;
     border-radius: 0px 0px 12px 12px;
 }
+
+/* SeaAnimal Component */
+
+.orange-checkbox {
+    --color: #C43E18; 
+  
+    appearance: none;
+    width: 20px; 
+    height: 20px;
+    border: 2px solid var(--color); 
+    border-radius: 4px; 
+    outline: none; 
+    position: relative;
+    &::before {
+      content: ''; 
+      display: block;
+      position: absolute; 
+      top: 50%; 
+      left: 50%;
+      transform: translate(-50%, -50%); 
+      width: 10px; 
+      height: 10px;
+      background-color: var(--color);
+      border-radius: 50%;
+      opacity: 0; 
+    }
+  }
+  
+  .orange-checkbox:checked::before {
+    opacity: 1; 
+  }
+  
+
+.AddAnimalSeaBlock{
+    margin: 0 auto;
+    border-radius: 12px;
+    width: 739px;
+    height: 612px;
+    border: 5px solid #C43E18;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.AddAnimalSeaBlockH2{
+    color: #C43E18;
+    font-size: 48px;
+    width: 828px;
+    height: 46px;
+    align-items: center;
+    margin: 0 auto;
+    padding: 20px 0px 0px 100px;
+}
+
+.blockAnimalSeaInfo{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 25px;
+}
+
+.blockTypeInfoFish{
+    display: flex;
+}
+
+.blockTypeInfoShrim{
+    display: flex;
+}
+
+.blockTypeInfoSnail{
+    display: flex;
+}
+
+.countAnimalSeaBlock{
+    border: 3px solid rgba(225, 225, 225, 1);
+    width: 300px;
+    height: 100px;
+    margin-top: 20px;
+    border-radius: 12px;
+}
+
+.countAnimalSeaBlockInfo{
+    display: flex;
+    justify-content: space-around;
+}
+
+.inputCount{
+    width: 50px;
+    height: 20px;
+    margin-top: 15px;
+    border-radius: 5px;
+    border: 3px solid rgba(225, 225, 225, 1);
+}
+
+.blockCancelButton{
+    width: 110px;
+    height: 50px;
+    background-color: rgba(217, 217, 217, 1);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.blockSaveButton{
+    width: 110px;
+    height: 50px;
+    background-color: rgba(196, 62, 24, 1);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.blockButton{
+    display: flex;
+    width: 400px;
+    margin: 0px 333px;
+    justify-content: space-around;
+}
