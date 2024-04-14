@@ -18,7 +18,7 @@ export const LogoutIcon = () => (
   </svg>
 );
 
-export const AliveIcon = ({ data }) => (
+export const AliveIcon = ({ data, number }) => (
   <div style={{ position: "relative" }}>
     <svg
       width="89"
@@ -46,9 +46,10 @@ export const AliveIcon = ({ data }) => (
       }}
     >
       <p>
-        {(data?.algae?.length || 0) +
-          (data?.fish?.length || 0) +
-          (data?.snail?.length || 0)}
+        {number ||
+          (data?.algae?.length || 0) +
+            (data?.fish?.length || 0) +
+            (data?.snail?.length || 0)}
       </p>
     </div>
   </div>
