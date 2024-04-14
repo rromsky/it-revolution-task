@@ -1,14 +1,115 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAnalytics } from "../../services";
+import { getAnalytics, loadData } from "../../services";
+import ProgressCircle from "./ui/ProgressCircle";
+import LineChart from "./ui/LineChart";
+import { AliveIcon } from "../Home/ui";
+const fstData = [
+  {
+    color: "hsl(182, 70%, 50%)",
+    data: [
+      {
+        color: "hsl(55, 70%, 50%)",
+        x: "13-04-2024",
+        y: 4,
+      },
+      {
+        color: "hsl(265, 70%, 50%)",
+        x: "14-04-2024",
+        y: 1,
+      },
+      {
+        color: "hsl(34, 70%, 50%)",
+        x: "15-04-2024",
+        y: 2,
+      },
+      {
+        color: "hsl(155, 70%, 50%)",
+        x: "16-04-2024",
+        y: 1,
+      },
+      {
+        color: "hsl(155, 70%, 50%)",
+        x: "17-04-2024",
+        y: 2,
+      },
+      {
+        color: "hsl(155, 70%, 50%)",
+        x: "18-04-2024",
+        y: 2,
+      },
+    ],
+    id: "whisky",
+  },
+];
+const scdData = [
+  {
+    color: "hsl(182, 70%, 50%)",
+    data: [
+      {
+        color: "hsl(55, 70%, 50%)",
+        x: "11-18.03",
+        y: 2,
+      },
+      {
+        color: "hsl(265, 70%, 50%)",
+        x: "18-25.03",
+        y: 1,
+      },
+      {
+        color: "hsl(34, 70%, 50%)",
+        x: "25-01.04",
+        y: 2,
+      },
+      {
+        color: "hsl(155, 70%, 50%)",
+        x: "01-08.04",
+        y: 1,
+      },
+      {
+        color: "hsl(155, 70%, 50%)",
+        x: "08-15-04",
+        y: 1,
+      },
+    ],
+    id: "whisky",
+  },
+];
 const Analitics = () => {
   const [data, setData] = useState({});
+  const [fData, setFData] = useState([{}]);
+  const [alive, setAlive] = useState(0);
+  const [dead, setDead] = useState(0);
+  const [male, setMale] = useState(0);
+  const [female, setFemale] = useState(0);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
-    getAnalytics(token).then((data) => {
-      if (data) setData(data);
+    loadData(token).then((data) => {
+      setFData(data);
+      setIsloading(false);
     });
-    console.log(data);
+    getAnalytics(token).then((fData) => {
+      if (fData) {
+        const d = Object.values(fData);
+        const res = {
+          live: 0,
+          dead: 0,
+          male: 0,
+          female: 0,
+        };
+
+        for (const a of d) {
+          res.live += a.live || 0;
+          res.dead += a.dead || 0;
+          res.female += a.girl || 0;
+          res.male += a.male || 0;
+        }
+        console.log(fData);
+        setData(res);
+      }
+    });
+    // console.log(data);
   }, []);
 
   return (
@@ -27,22 +128,7 @@ const Analitics = () => {
               fill="#C43E18"
             />
           </svg>
-          <svg
-            width="89"
-            height="92"
-            viewBox="0 0 87 92"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M81.5625 36.6562C81.5625 61.8125 46.2901 82.1747 44.788 83.0156C44.3921 83.2408 43.9496 83.3587 43.5 83.3587C43.0504 83.3587 42.6079 83.2408 42.212 83.0156C40.7099 82.1747 5.4375 61.8125 5.4375 36.6562C5.4438 30.7489 7.66572 25.0855 11.6158 20.9084C15.5659 16.7313 20.9216 14.3817 26.5078 14.375C33.5256 14.375 39.67 17.5662 43.5 22.9605C47.33 17.5662 53.4744 14.375 60.4922 14.375C66.0784 14.3817 71.4341 16.7313 75.3842 20.9084C79.3343 25.0855 81.5562 30.7489 81.5625 36.6562Z"
-              fill="#C43E18"
-            />
-            <path
-              d="M43.69 64.3977C42.4968 64.3788 41.3036 64.1515 40.1104 63.7159C38.9173 63.2803 37.8282 62.5464 36.8434 61.5142C35.8585 60.4725 35.0678 59.0663 34.4712 57.2955C33.8746 55.5152 33.5763 53.2803 33.5763 50.5909C33.5763 48.0152 33.8178 45.733 34.3008 43.7443C34.7837 41.7462 35.4845 40.0653 36.4031 38.7017C37.3216 37.3286 38.4296 36.2869 39.7269 35.5767C41.0337 34.8665 42.5063 34.5114 44.1445 34.5114C45.7733 34.5114 47.2222 34.8381 48.4911 35.4915C49.7695 36.1354 50.8112 37.035 51.6161 38.1903C52.421 39.3456 52.9419 40.6761 53.1786 42.1818H49.7127C49.3907 40.875 48.7657 39.7907 47.8377 38.929C46.9097 38.0672 45.6786 37.6364 44.1445 37.6364C41.8907 37.6364 40.1152 38.6165 38.8178 40.5767C37.5299 42.5369 36.8813 45.2879 36.8718 48.8295H37.0991C37.6294 48.0246 38.2591 47.3381 38.9883 46.7699C39.7269 46.1922 40.5413 45.7472 41.4315 45.4347C42.3216 45.1222 43.2638 44.9659 44.2582 44.9659C45.9248 44.9659 47.4495 45.3826 48.832 46.2159C50.2146 47.0398 51.3226 48.1809 52.1559 49.6392C52.9892 51.0881 53.4059 52.75 53.4059 54.625C53.4059 56.4242 53.0034 58.072 52.1985 59.5682C51.3936 61.0549 50.262 62.2386 48.8036 63.1193C47.3548 63.9905 45.6502 64.4167 43.69 64.3977ZM43.69 61.2727C44.8832 61.2727 45.9532 60.9744 46.9002 60.3778C47.8567 59.7812 48.6095 58.9811 49.1587 57.9773C49.7174 56.9735 49.9968 55.8561 49.9968 54.625C49.9968 53.4223 49.7269 52.3286 49.1871 51.3438C48.6568 50.3494 47.9229 49.5587 46.9854 48.9716C46.0574 48.3845 44.9968 48.0909 43.8036 48.0909C42.904 48.0909 42.0659 48.2708 41.2894 48.6307C40.5129 48.9811 39.8311 49.464 39.244 50.0795C38.6663 50.6951 38.2118 51.4006 37.8803 52.196C37.5489 52.982 37.3832 53.8106 37.3832 54.6818C37.3832 55.8371 37.6531 56.9167 38.1928 57.9205C38.7421 58.9242 39.4902 59.7339 40.4371 60.3494C41.3936 60.965 42.4779 61.2727 43.69 61.2727Z"
-              fill="white"
-            />
-          </svg>
+          <AliveIcon data={fData} />
           <svg
             width="82"
             height="82"
@@ -82,45 +168,34 @@ const Analitics = () => {
       <div className="analiticsBlock">
         <div className="staticBlock">
           <div className="countSeaAnimal">
-            <h2>
-              Кількість живих мешканців:{" "}
-              {Object.values(data).reduce((acc, el) => {
-                return el.live + acc;
-              }, 0)}
-            </h2>
+            <h2>Кількість живих мешканців: {data.live}</h2>
+            <ProgressCircle number={data.live} />
           </div>
-          <div className="countDieadSeaAnimal">
-            \
-            <h2>
-              Кількість мертвих мешканців:
-              {Object.values(data).reduce((acc, el) => {
-                return el.dead + acc;
-              }, 0)}
-            </h2>
+          <div className="countSeaAnimal">
+            <h2>Кількість мертвих мешканців:</h2>
+            <ProgressCircle progress={0} number={data.dead} />
           </div>
-          <div className="countGirlSeaAnimal">
-            <h2>
-              Кількість дівчат:
-              {Object.values(data).reduce((acc, el) => {
-                return el?.female || 0 + acc;
-              }, 0)}
-            </h2>
+          <div className="countSeaAnimal">
+            <h2>Кількість дівчат:</h2>
+            <ProgressCircle progress={0.5} number={data.female} />
           </div>
-          <div className="countBoySeaAnimal">
-            <h2>
-              Кількість хлопців:
-              {Object.values(data).reduce((acc, el) => {
-                return el?.male + acc;
-              }, 0)}
-            </h2>
+          <div className="countSeaAnimal">
+            <h2>Кількість хлопців:</h2>
+            <ProgressCircle progress={0.5} number={data.male} />
           </div>
         </div>
         <div className="graphsBlock">
           <div className="graphs">
-            <h2>Графік частоти годування по дням:</h2>
+            <h2 style={{ position: "absolute" }}>
+              Графік частоти годування по дням:
+            </h2>
+            <LineChart data={fstData} />
           </div>
           <div className="graphs2">
-            <h2>Графік частоти очищення акваріуму по тижням:</h2>
+            <h2 style={{ position: "absolute" }}>
+              Графік частоти очищення акваріуму по тижням:
+            </h2>
+            <LineChart data={scdData} />
           </div>
         </div>
       </div>

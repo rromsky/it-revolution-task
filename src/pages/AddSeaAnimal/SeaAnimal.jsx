@@ -136,7 +136,7 @@ const SeaAnimal = () => {
               <div className="countAnimalSeaBlockInfo">
                 <p>Дівчина</p>
                 <input
-                  onChange={(e) => setFishFemale(e.target.value)}
+                  onChange={(e) => setFishFemale(+e.target.value)}
                   value={fishFemale}
                   className="inputCount"
                   type="number"
@@ -149,7 +149,7 @@ const SeaAnimal = () => {
               <div className="countAnimalSeaBlockInfo">
                 <p>Хлопець</p>
                 <input
-                  onChange={(e) => setFishMale(e.target.value)}
+                  onChange={(e) => setFishMale(+e.target.value)}
                   value={fishMale}
                   className="inputCount"
                   type="number"
@@ -164,7 +164,7 @@ const SeaAnimal = () => {
               <div className="countAnimalSeaBlockInfo">
                 <p>Дівчина</p>
                 <input
-                  onChange={(e) => setShrimpFemale(e.target.value)}
+                  onChange={(e) => setShrimpFemale(+e.target.value)}
                   value={shrimpFemale}
                   className="inputCount"
                   type="number"
@@ -177,7 +177,7 @@ const SeaAnimal = () => {
               <div className="countAnimalSeaBlockInfo">
                 <p>Хлопець</p>
                 <input
-                  onChange={(e) => setShrimpMale(e.target.value)}
+                  onChange={(e) => setShrimpMale(+e.target.value)}
                   value={shrimpMale}
                   className="inputCount"
                   type="number"
@@ -192,7 +192,7 @@ const SeaAnimal = () => {
               <div className="countAnimalSeaBlockInfo">
                 <p>Дівчина</p>
                 <input
-                  onChange={(e) => setSnailFemale(e.target.value)}
+                  onChange={(e) => setSnailFemale(+e.target.value)}
                   value={snailFemale}
                   className="inputCount"
                   type="number"
@@ -205,7 +205,7 @@ const SeaAnimal = () => {
               <div className="countAnimalSeaBlockInfo">
                 <p>Хлопець</p>
                 <input
-                  onChange={(e) => setSnailMale(e.target.value)}
+                  onChange={(e) => setSnailMale(+e.target.value)}
                   value={snailMale}
                   className="inputCount"
                   type="number"

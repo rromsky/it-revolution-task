@@ -257,10 +257,13 @@ header {
 .countSeaAnimal {
   width: 220px;
   height: 172px;
+  position: relative;
   background-color: #d9d9d9;
   border-radius: 12px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  text-align: center;
   align-items: center;
 }
 

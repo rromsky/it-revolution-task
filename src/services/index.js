@@ -10,10 +10,12 @@ export const loadData = async (token) => {
     method: "GET",
   });
   const json = await data.json();
+  console.log(json);
   return json;
 };
 
 export const addItem = async (token, itemName, itemNumber, is_male) => {
+  console.log(itemName, itemNumber);
   await axios.post(
     API_URL + `/aquarium/${itemName}/`,
     {

@@ -47,9 +47,9 @@ export const AliveIcon = ({ data, number }) => (
     >
       <p>
         {number ||
-          (data?.algae?.length || 0) +
-            (data?.fish?.length || 0) +
-            (data?.snail?.length || 0)}
+          (data?.algae?.reduce((acc, el) => acc + el.quantity, 0) || 0) +
+            (data?.fish?.reduce((acc, el) => acc + el.quantity, 0) || 0) +
+            (data?.shrimp?.reduce((acc, el) => acc + el.quantity, 0) || 0)}
       </p>
     </div>
   </div>

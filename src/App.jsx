@@ -25,7 +25,7 @@ function App() {
 
   return (
     <>
-      <Router>
+      <Router basename="/">
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/add" element={<SeaAnimal />} />

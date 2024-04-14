@@ -25,11 +25,9 @@ const Index = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    getAnalytics(token).then((data) => {
-      console.log(data);
-    });
     loadData(token).then((data) => {
       setData(data);
+      console.log(data);
       setIsloading(false);
     });
   }, []);
@@ -74,8 +72,8 @@ const Index = () => {
             <AliveIcon data={data} />
             <AnaliticsIcon />
           </div>
-          <IsFeedIndicator is_feed={data?.data?.is_feed} />
-          <IsClearIndicator is_clear={data?.data?.is_clear} />
+          <IsFeedIndicator is_feed={data.is_feed} />
+          <IsClearIndicator is_clear={data.is_clean} />
         </div>
         <div className="menu">
           <NotificationIcon />
@@ -96,13 +94,17 @@ const Index = () => {
         {!!data?.algae?.length && (
           <div className="entity-item">
             <img src="./img/snail.png" alt="" />
-            <div className="entyity-indicatior algae">{data.algae.length}</div>
+            <div className="entyity-indicatior algae">
+              {data.algae.reduce((acc, el) => acc + el.quantity, 0)}
+            </div>
           </div>
         )}
         {!!data?.fish?.length && (
           <div className="entity-item">
             <img src="./img/fish.png" alt="" />
-            <div className="entyity-indicatior">{data.fish.length}</div>
+            <div className="entyity-indicatior">
+              {data.fish.reduce((acc, el) => acc + el.quantity, 0)}
+            </div>
           </div>
         )}
       </div>
@@ -110,7 +112,9 @@ const Index = () => {
         {!!data?.shrimp?.length && (
           <div className="entity-item">
             <img src="./img/shrimp.png" alt="" />
-            <div className="entyity-indicatior">{data.shrimp.length}</div>
+            <div className="entyity-indicatior">
+              {data.shrimp.reduce((acc, el) => acc + el.quantity, 0)}
+            </div>
           </div>
         )}
       </div>
