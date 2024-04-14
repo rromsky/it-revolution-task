@@ -30,9 +30,9 @@ export const addItem = async (token, itemName, itemNumber, is_male) => {
 };
 
 export const cleanAquarium = async (token) => {
-  await axios.get(
+  await axios.post(
     API_URL + "/aquarium/clean-aquarium/",
-    { access_token: token },
+    {},
     {
       headers: {
         Authorization: token,
@@ -41,15 +41,8 @@ export const cleanAquarium = async (token) => {
   );
 };
 
-export const feedFish = async (token) => {
-  const u = await fetch(API_URL + "/aquarium/aquarium/", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    method: "GET",
-  });
-  const uJson = await u.json();
-  console.log(uJson);
+export const feedFish = async (token1) => {
+  const token = localStorage.getItem("token");
   await axios.post(
     API_URL + "/aquarium/feed-aquarium/",
     {},
@@ -59,4 +52,15 @@ export const feedFish = async (token) => {
       },
     }
   );
+};
+
+export const getAnalytics = async (token) => {
+  const data = await fetch(API_URL + "/aquarium/analytics/", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    method: "GET",
+  });
+  const json = await data.json();
+  return json;
 };

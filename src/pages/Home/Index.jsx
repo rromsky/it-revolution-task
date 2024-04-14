@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { loadData } from "../../services";
+import { loadData, getAnalytics } from "../../services";
 import {
   LogoutIcon,
   AliveIcon,
@@ -25,6 +25,9 @@ const Index = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    getAnalytics(token).then((data) => {
+      console.log(data);
+    });
     loadData(token).then((data) => {
       setData(data);
       setIsloading(false);

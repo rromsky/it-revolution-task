@@ -65,3 +65,17 @@ export const checkAuth = async () => {
     return null;
   }
 };
+
+export const updateToken = async () => {
+  try {
+    const refreshToken = localStorage.getItem("refreshToken");
+    const data = await axios.post(API_URL + "/users/access_token/", {
+      refresh_token: refreshToken,
+    });
+    setToken(data.data.access_token);
+    setRefreshToken(data.data.refresh_token);
+    return data.data.access_token;
+  } catch (e) {
+    console.log(e);
+  }
+};
