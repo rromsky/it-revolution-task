@@ -55,6 +55,7 @@ header {
 .question {
   display: flex;
   width: 95%;
+  cursor: pointer;
   justify-content: end;
   margin-top: 370px;
 }
@@ -70,6 +71,7 @@ header {
   height: 303px;
   border-radius: 30px;
   position: absolute;
+  overflow: scroll;
 }
 
 .faqBlock {
@@ -307,4 +309,76 @@ header {
   border-radius: 12px;
   display: flex;
   justify-content: center;
+}
+
+.authorization-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.authorization-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #32313152;
+  min-width: 330px;
+  gap: 10px;
+  border-radius: 10px;
+  padding: 20px;
+}
+.authorization-input {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #32313100;
+  color: #fff;
+  border-width: 0;
+  border-bottom-width: 2px;
+  border-bottom-color: #c2f9cfcb;
+}
+
+.authorization-header {
+  color: #fff;
+  font-size: 24px;
+  text-decoration: underline;
+  text-underline-position: under;
+  text-decoration-color: #8fd0a6;
+}
+.authorization-input::placeholder {
+  color: #dddddd;
+}
+.authorization-button {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #8fd0a6;
+  color: #fff;
+  border-width: 0;
+  cursor: pointer;
+}
+.authorization-button-hovered {
+  display: contents;
+  width: auto;
+  background-color: none;
+  border-width: 0;
+  color: #fff;
+}
+.icon {
+  cursor: pointer;
+}
+
+.entyity-indicatior {
+  position: absolute;
+  top: 0;
+  left: -5px;
+  background-color: #c43e18;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+}
+
+.entity-item {
+  position: relative;
 }

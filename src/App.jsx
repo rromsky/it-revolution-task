@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./style.css";
 import { useEffect, useState } from "react";
 import { checkAuth } from "./services";
-import { set } from "mobx";
+import { ToastContainer } from "react-toastify";
+import Authorization from "./pages/Authorization";
 
 function App() {
   const [userToken, setUserToken] = useState(null);
@@ -19,7 +20,7 @@ function App() {
   }, []);
 
   if (!userToken) {
-    return <></>;
+    return <Authorization setUserToken={setUserToken} />;
   }
 
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/analitics" element={<Analitics />} />
         </Routes>
       </Router>
+      <ToastContainer />
     </>
   );
 }
