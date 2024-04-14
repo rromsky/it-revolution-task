@@ -28,3 +28,35 @@ export const addItem = async (token, itemName, itemNumber, is_male) => {
     }
   );
 };
+
+export const cleanAquarium = async (token) => {
+  await axios.get(
+    API_URL + "/aquarium/clean-aquarium/",
+    { access_token: token },
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+};
+
+export const feedFish = async (token) => {
+  const u = await fetch(API_URL + "/aquarium/aquarium/", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    method: "GET",
+  });
+  const uJson = await u.json();
+  console.log(uJson);
+  await axios.post(
+    API_URL + "/aquarium/feed-aquarium/",
+    {},
+    {
+      headers: {
+        Authorization: token,
+      },
+    }
+  );
+};
