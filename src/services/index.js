@@ -13,17 +13,17 @@ export const loadData = async (token) => {
   return json;
 };
 
-export const addItem = async (token, itemName, itemNumber) => {
-  axios.post(
+export const addItem = async (token, itemName, itemNumber, is_male) => {
+  await axios.post(
     API_URL + `/aquarium/${itemName}/`,
     {
-      is_male: false,
+      is_male,
       species: itemName,
       quantity: itemNumber,
     },
     {
       headers: {
-        Authorization: data.data.access_token,
+        Authorization: token,
       },
     }
   );
